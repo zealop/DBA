@@ -1,0 +1,103 @@
+<button id="add-book">Add new Book</button>
+<table class="table table-bordered data-table table-striped" id="mytable">
+    <thead class='thead-dark'>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Summary</th>
+      <th>Cover</th>
+      <th>Price</th>
+      <th>Author</th>
+      <th>Publisher</th>
+      <th>Publication Date</th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+<!--Edit/Add Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Book Info</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form action="/edit-book" method="post" id="myform">
+          
+          <div class="form-group" id="id-wrapper">
+            <label for="bookId">ID</label>
+            <input type="text"class="form-control"  readonly id="bookId" name="bookId" placeholder="Enter Book ID">
+          </div>
+          
+
+          <div class="form-group">
+            <label for="inputName">Name</label>
+            <input type="text" class="form-control" id="inputName" name="inputName"  placeholder="Enter Book Name">
+          </div>
+          <div class="form-group">
+            <label for="inputSum">Summary</label>
+            <textarea class="form-control" id="inputSum" name="inputSum" placeholder="Enter Summary"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="inputCover">Cover</label>
+            <input type="url" class="form-control" id="inputCover" name="inputCover" placeholder="Enter Cover Image Link">
+          </div>
+          <div class="form-group">
+            <label for="inputPrice">Price</label>
+            <input type="number" class="form-control" id="inputPrice" name="inputPrice" placeholder="Enter Book Price">
+          </div>
+          
+          <div class="form-group">
+            <label for="inputPublisher">Publisher</label>
+            <select class="form-control" id="inputPublisher" name="inputPublisher">
+              <option value="">Unknown</option>
+            </select> 
+          </div>
+          
+
+          <div class="form-group">
+            <label for="inputDate">Publication Date</label>
+            <input type="date" class="form-control" id="inputDate" name="inputDate">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<!--Delete Modal -->
+<div class="modal fade" id="delModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirm Delete Book</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form action="/delete-book" method="post">
+          <div class="form-group">
+            <label for="bookId2">Book ID</label>
+            <input type="text" class="form-control" id="bookId2" readonly name="bookId2">
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
