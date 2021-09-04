@@ -1,4 +1,4 @@
-<button id="add-publisher">Add new Publisher</button>
+<button class="btn btn-primary" id="add-publisher">Add new Publisher</button>
 <table class="table table-bordered data-table table-striped" id="mytable">
     <thead class='thead-dark'>
       <th>Name</th>
@@ -20,7 +20,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Edit Publisher Info</h4>
+        <h4 class="modal-title">Publisher Info</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -67,7 +67,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form action="/delete-publisher" method="post">
+        <form action="/delete-publisher" method="post" id="myform_del">
           <div class="form-group" id="id-wrapper">
             <label for="inputName2">Publisher Name</label>
             <input type="text"class="form-control"  id="inputName2" name="inputName2" readonly placeholder="Enter Publisher Name">

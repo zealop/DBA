@@ -1,6 +1,9 @@
+// const address = "http://c475f61b43e1.ap.ngrok.io"
+const address = "http://127.0.0.1:3000"
 document.getElementById("book").onclick = function()
 {
-    fetch('http://127.0.0.1:3000/book')
+    console.log('click');
+    fetch(`${address}/book`)
         .then(response => response.json())
         .then(data => {
             fetch('book.html')
@@ -39,7 +42,7 @@ document.getElementById("book").onclick = function()
                     })
                     $("#add-book").click(function() {
 
-                        fetch('http://127.0.0.1:3000/publisher')
+                        fetch(`${address}/publisher`)
                         .then(response => response.json())
                         .then(data => {
                             const select =  document.getElementById('inputPublisher');
@@ -52,16 +55,33 @@ document.getElementById("book").onclick = function()
                         });
                         
                         document.getElementById("bookId").readOnly = false;
-                        document.getElementById("myform").action = "/add-book";
+         
                         document.getElementById("myform").reset();
                         $('#myModal').modal('toggle');
+
+                        $("#myform").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this);
+                            var url = "/add-book" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#myModal').modal('toggle');
+                                    $('#book').click();
+                                 }
+                            });
+                        });
+
                     });
-                    $(".edit-book").click(function() {
+                    $(document).on('click', '.edit-book', function() {
                         var row = $(this).closest("tr");    // Find the row
                         var tds = row.find("td"); // Find the text
                         
                 
-                        fetch('http://127.0.0.1:3000/publisher')
+                        fetch(`${address}/publisher`)
                         .then(response => response.json())
                         .then(data => {
                             const select =  document.getElementById('inputPublisher');
@@ -82,16 +102,48 @@ document.getElementById("book").onclick = function()
                         $("#inputDate").val($(tds[7]).text());
 
                         document.getElementById("bookId").readOnly = true;
-                        document.getElementById("myform").action = "/edit-book";
+                        // document.getElementById("myform").action = "/edit-book";
                         $('#myModal').modal('toggle');
+
+                        $("#myform").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this);
+                            var url = "/edit-book" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#myModal').modal('toggle');
+                                    $('#book').click();
+                                 }
+                            });
+                        });
                     });
-                    $(".delete-book").click(function() {
+                    $(document).on('click', '.delete-book', function() {
                         var row = $(this).closest("tr");    // Find the row
                         var tds = row.find("td"); // Find the text
                         
                         $("#bookId2").val($(tds[0]).text());
   
                         $('#delModal').modal('toggle');
+
+                        $("#myform_del").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this);
+                            var url = "/delete-book" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#delModal').modal('toggle');
+                                    $('#book').click();
+                                 }
+                            });
+                        });
                     });
                 });
         });
@@ -102,7 +154,7 @@ document.getElementById("book").onclick = function()
 
 document.getElementById("publisher").onclick = function()
 {
-    fetch('http://127.0.0.1:3000/publisher')
+    fetch(`${address}/publisher`)
         .then(response => response.json())
         .then(data => {
             fetch('publisher.html')
@@ -138,9 +190,25 @@ document.getElementById("publisher").onclick = function()
 
                     $("#add-publisher").click(function() {
                         document.getElementById("inputName").readOnly = false;
-                        document.getElementById("myform").action = "/add-publisher";
+                        // document.getElementById("myform").action = "/add-publisher";
                         document.getElementById("myform").reset();
                         $('#myModal').modal('toggle');
+
+                        $("#myform").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this);
+                            var url = "/add-publisher" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#myModal').modal('toggle');
+                                    $('#publisher').click();
+                                 }
+                            });
+                        });
                     });
                     $(".edit-publisher").click(function() {
                         var row = $(this).closest("tr");    // Find the row
@@ -154,8 +222,24 @@ document.getElementById("publisher").onclick = function()
 
 
                         document.getElementById("inputName").readOnly = true;
-                        document.getElementById("myform").action = "/edit-publisher";
+                        // document.getElementById("myform").action = "/edit-publisher";
                         $('#myModal').modal('toggle');
+
+                        $("#myform").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this);
+                            var url = "/edit-publisher" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#myModal').modal('toggle');
+                                    $('#publisher').click();
+                                 }
+                            });
+                        });
                     });
                     $(".delete-publisher").click(function() {
                         var row = $(this).closest("tr");    // Find the row
@@ -164,6 +248,22 @@ document.getElementById("publisher").onclick = function()
                         $("#inputName2").val($(tds[0]).text());
   
                         $('#delModal').modal('toggle');
+
+                        $("#myform_del").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this);
+                            var url = "/delete-publisher" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#delModal').modal('toggle');
+                                    $('#publisher').click();
+                                 }
+                            });
+                        });
                     });
                 });
         });
@@ -171,7 +271,7 @@ document.getElementById("publisher").onclick = function()
 
 document.getElementById("author").onclick = function()
 {
-    fetch('http://127.0.0.1:3000/author')
+    fetch(`${address}/author`)
         .then(response => response.json())
         .then(data => {
             fetch('author.html')
@@ -209,9 +309,25 @@ document.getElementById("author").onclick = function()
 
                     $("#add-author").click(function() {
                         document.getElementById("inputId").readOnly = false;
-                        document.getElementById("myform").action = "/add-author";
+                        // document.getElementById("myform").action = "/add-author";
                         document.getElementById("myform").reset();
                         $('#myModal').modal('toggle');
+
+                        $("#myform").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this);
+                            var url = "/add-author" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#myModal').modal('toggle');
+                                    $('#author').click();
+                                 }
+                            });
+                        });
                     });
                     $(".edit-author").click(function() {
                         var row = $(this).closest("tr");    // Find the row
@@ -227,8 +343,24 @@ document.getElementById("author").onclick = function()
 
 
                         document.getElementById("inputId").readOnly = true;
-                        document.getElementById("myform").action = "/edit-author";
+                        // document.getElementById("myform").action = "/edit-author";
                         $('#myModal').modal('toggle');
+
+                        $("#myform").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this);
+                            var url = "/edit-author" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#myModal').modal('toggle');
+                                    $('#author').click();
+                                 }
+                            });
+                        });
                     });
                     $(".delete-author").click(function() {
                         var row = $(this).closest("tr");    // Find the row
@@ -237,6 +369,22 @@ document.getElementById("author").onclick = function()
                         $("#inputId2").val($(tds[0]).text());
   
                         $('#delModal').modal('toggle');
+
+                        $("#myform_del").submit(function(e) {
+                            e.preventDefault(); // prevent actual form submit
+                            var form = $(this); 
+                            var url = "/delete-author" //get submit url [replace url here if desired]
+                            $.ajax({
+                                 type: "POST",
+                                 url: url,
+                                 data: form.serialize(), // serializes form input
+                                 success: function(data){
+                                    alert(data);
+                                    $('#delModal').modal('toggle');
+                                    $('#author').click();
+                                 }
+                            });
+                        });
                     });
                 });
         });

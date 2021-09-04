@@ -1,8 +1,14 @@
 DELETE FROM `publisher`;
-INSERT INTO `publisher` (`NamePublisher`, `AddressPublisher`, `PhonePublisher`, `EmailPublisher`, `BusinessCode`) VALUES ('Seven Seas', NULL, NULL, NULL, NULL); 
+INSERT INTO `publisher` (`NamePublisher`, `AddressPublisher`, `PhonePublisher`, `EmailPublisher`, `BusinessCode`) 
+VALUES 
+('Seven Seas', NULL, NULL, NULL, NULL);,
+('Test Publisher', NULL, NULL, NULL, NULL); 
 
 DELETE FROM `author`;
-INSERT INTO `author` (`IDAuthor`, `Fname`, `Mname`, `Lname`, `AddressAuthor`, `EmailAuthor`, `PhoneAuthor`) VALUES ('1', 'Yuyuko', NULL, 'Takemiya', NULL, NULL, NULL); 
+INSERT INTO `author` (`IDAuthor`, `Fname`, `Mname`, `Lname`, `AddressAuthor`, `EmailAuthor`, `PhoneAuthor`) 
+VALUES 
+('1', 'Yuyuko', NULL, 'Takemiya', NULL, NULL, NULL),
+('2', 'Test', NULL, 'Tester', NULL, NULL, NULL); 
 
 DELETE FROM `book`;
 INSERT INTO `book` (`IDBook`, `CurrentBookPrice`, `NameBook`, `CoverImage`, `BookSummary`, `BookPrice`, `BNamePublisher`, `PublisherYear`, `PublisherTime`) 
@@ -41,3 +47,18 @@ VALUES
 ('164275739X', '1'),
 ('1645051781', '1'),
 ('1645054381', '1');
+
+DELETE FROM `category`;
+INSERT INTO `category` (`IDCategory`, `NameCategory`) 
+VALUES 
+('1', 'Romance'),
+('2', 'Comedy'),
+('3', 'Horror'),
+('4', 'Scifi');
+
+DELETE FROM `attached`
+INSERT INTO `category` (`IDBook`, `IDCategory`) 
+VALUES 
+('1626927952', '1'),
+('164275112X', '1'),
+('164275112X', '2');

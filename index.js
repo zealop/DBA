@@ -67,8 +67,10 @@ app.post('/add-book', function(req, res){
     ('${form.bookId}', NULL, '${form.inputName}', '${form.inputCover}', '${form.inputSum}', '${form.inputPrice}', ${form.inputPublisher},
     '${form.inputDate.substring(0, 4)}', '${form.inputDate}')`, 
     function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });
 
@@ -81,8 +83,10 @@ app.post('/edit-book', function(req, res){
     SET NameBook = '${form.inputName}', CoverImage = '${form.inputCover}', BookSummary = '${form.inputSum}', BookPrice =  '${form.inputPrice}', BNamePublisher  =${form.inputPublisher},
     PublisherYear ='${form.inputDate.substring(0, 4)}', PublisherTime =  '${form.inputDate}'
     WHERE IDBook = '${form.bookId}'`, function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });
 
@@ -91,8 +95,10 @@ app.post('/delete-book', function(req, res){
     const form = req.body;
     console.log(form);
     con.query(`DELETE FROM book WHERE IDBook = '${form.bookId2}'`, function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });
 
@@ -104,8 +110,10 @@ app.post('/add-author', function(req, res){
     VALUES 
     ('${form.inputId}', '${form.inputFName}', '${form.inputMName}', '${form.inputLName}', '${form.inputAdd}', '${form.inputPhone}', '${form.inputEmail}')`, 
     function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });
 
@@ -117,8 +125,10 @@ app.post('/edit-author', function(req, res){
     SET Fname = '${form.inputFName}', Mname = '${form.inputMName}', Lname = '${form.inputLName}', 
     AddressAuthor = '${form.inputAdd}', EmailAuthor = '${form.inputEmail}', PhoneAuthor = '${form.inputPhone}'
     WHERE IDAuthor = '${form.inputId}'`, function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });
 
@@ -126,8 +136,10 @@ app.post('/delete-author', function(req, res){
 
     const form = req.body;
     con.query(`DELETE FROM author WHERE IDAuthor = '${form.inputId2}'`, function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });
 
@@ -140,8 +152,10 @@ app.post('/add-publisher', function(req, res){
     VALUES 
     ('${form.inputName}', '${form.inputAdd}', '${form.inputPhone}', '${form.inputEmail}', '${form.inputCode}')`, 
     function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });
 
@@ -152,8 +166,10 @@ app.post('/edit-publisher', function(req, res){
     con.query(`UPDATE publisher
     SET AddressPublisher = '${form.inputAdd}', EmailPublisher = '${form.inputEmail}', PhonePublisher = '${form.inputPhone}', BusinessCode = '${form.inputCode}'
     WHERE NamePublisher = '${form.inputName}'`, function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });
 
@@ -161,7 +177,9 @@ app.post('/delete-publisher', function(req, res){
 
     const form = req.body;
     con.query(`DELETE FROM publisher WHERE NamePublisher = '${form.inputName2}'`, function (err, result, fields) {
-        if (err) throw err;
-        res.redirect('back');
+        if (err)
+            res.send(err.sqlMessage);
+        else
+            res.send('OK');
     });
 });

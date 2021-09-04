@@ -69,11 +69,11 @@ CREATE TABLE EBook.Order(
 
 CREATE TABLE EBook.Book(
 	IDBook CHAR(10) PRIMARY KEY NOT NULL,
-	CurrentBookPrice INT,
+	CurrentBookPrice INT DEFAULT 1,
 	NameBook VARCHAR(50),
 	CoverImage TEXT,
 	BookSummary VARCHAR(255),
-	BookPrice INT,
+	BookPrice INT DEFAULT 1,
 	BNamePublisher VARCHAR(50),
 	PublisherYear CHAR(4),
 	PublisherTime DATE
@@ -130,7 +130,7 @@ CREATE TABLE EBook.Attached(
 	PRIMARY KEY(IDBook,IDCategory)
 );
 CREATE TABLE EBook.Category(
-	NumberOfBook INT,
+	NumberOfBook INT(255) DEFAULT 0,
 	NameCategory VARCHAR(50),
 	IDCategory CHAR(7) PRIMARY KEY NOT NULL
 );

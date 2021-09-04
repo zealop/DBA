@@ -1,4 +1,4 @@
-<button id="add-book">Add new Book</button>
+<button class="btn btn-primary" id="add-book">+ Add new Book</button>
 <table class="table table-bordered data-table table-striped" id="mytable">
     <thead class='thead-dark'>
       <th>ID</th>
@@ -23,7 +23,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Edit Book Info</h4>
+        <h4 class="modal-title">Book Info</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -85,7 +85,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form action="/delete-book" method="post">
+        <form action="/delete-book" method="post" id="myform_del">
           <div class="form-group">
             <label for="bookId2">Book ID</label>
             <input type="text" class="form-control" id="bookId2" readonly name="bookId2">
